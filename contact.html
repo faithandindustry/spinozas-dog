@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Spinozas Dog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap');
+        body { font-family: 'Geist', system_ui, sans-serif; }
+        .hero-bg { background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; }
+        .content-overlay { background: rgba(0, 0, 0, 0.68); backdrop-filter: blur(8px); }
+        .nav-link { transition: all 0.3s ease; }
+        .nav-link:hover, .nav-link.active { color: white; letter-spacing: 0.05em; }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- NAV - active Contact -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-md">
+        <div class="max-w-screen-2xl mx-auto px-8 py-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-x-3">
+                <div class="w-7 h-7 bg-white rounded-full flex items-center justify-center text-black text-sm font-bold">SD</div>
+                <span class="text-2xl font-semibold tracking-tighter">SPINOZAS DOG</span>
+            </a>
+            <div class="flex gap-x-8 text-sm font-medium uppercase tracking-widest">
+                <a href="index.html" class="nav-link">About</a>
+                <a href="performances.html" class="nav-link">Performances</a>
+                <a href="recordings.html" class="nav-link">Recordings</a>
+                <a href="bookings.html" class="nav-link">Bookings</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-bg relative" style="background-image: url('https://picsum.photos/id/251/2000/1400')">
+        <div class="content-overlay absolute inset-0"></div>
+        <div class="relative z-10 max-w-xl mx-auto px-8 pt-32">
+            <h1 class="text-6xl font-bold tracking-tighter mb-12">CONTACT</h1>
+            <div class="space-y-6 text-xl">
+                <p><a href="mailto:hello@spinozas.dog" class="hover:underline">hello@spinozas.dog</a></p>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:underline">Instagram</a>
+                    <a href="#" class="hover:underline">Bandcamp</a>
+                    <a href="#" class="hover:underline">Spotify</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
