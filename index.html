@@ -46,7 +46,7 @@
     <div class="relative z-10 flex items-center justify-center min-h-[calc(100vh-120px)] px-6">
         <div class="max-w-xl text-center">
             <p class="text-2xl md:text-3xl text-white/70 mb-8">
-                experimental rock • psychedelic folk • noise
+                style • poise • disgrace
             </p>
             <div class="text-lg leading-relaxed text-white/80">
                 <p>Music born somewhere between philosophy and raw instinct.</p>
@@ -69,5 +69,37 @@
         </div>
     </div>
 
-    <script>
-        const images = ["https://picsum.photos/id/1015/2000/1400","https://picsum.photos/id/133/2000/1400","https://picsum.photos/id/201/2000/1400","https://picsum.photos/id/251/2000
+  
+<script>
+    const images = [
+        "assets/hero1.jpg",
+        "assets/hero2.jpg",
+        "assets/hero3.jpg",
+        "assets/hero4.jpg",
+        "assets/hero5.jpg"
+    ];
+
+    let current = 0;
+        const slideshow = document.getElementById('slideshow');
+        function changeBg() {
+            slideshow.style.backgroundImage = `url('${images[current]}')`;
+            current = (current + 1) % images.length;
+        }
+        setInterval(changeBg, 7000); changeBg();
+
+        const audio = document.getElementById('player');
+        const playBtn = document.getElementById('playBtn');
+        const muteBtn = document.getElementById('muteBtn');
+        let isMuted = false;
+
+        playBtn.addEventListener('click', () => {
+            if (audio.paused) { audio.play(); playBtn.textContent = '❚❚'; }
+            else { audio.pause(); playBtn.textContent = '▶'; }
+        });
+        muteBtn.addEventListener('click', () => {
+            isMuted = !isMuted; audio.muted = isMuted;
+            muteBtn.textContent = isMuted ? 'unmute' : 'mute';
+        });
+    </script>
+</body>
+</html>
