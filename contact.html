@@ -9,16 +9,37 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap');
         body { font-family: 'Geist', system-ui, sans-serif; font-weight: 400; }
-        .hero-bg { background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; transition: background-image 2s ease-in-out; }
+        
+        .hero-bg { 
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed; 
+            min-height: 100vh; 
+            transition: background-image 2s ease-in-out; 
+        }
+        
         .title { font-size: 3.2rem; letter-spacing: -0.04em; }
         .nav-link { font-size: 1.1rem; transition: color 0.3s ease; }
         .nav-link:hover { color: #ccc; }
+
+        .photo-credit {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.65);
+            z-index: 100;
+            text-align: right;
+            pointer-events: none;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
     </style>
 </head>
 <body class="bg-black text-white">
 
     <div id="slideshow" class="hero-bg fixed inset-0 z-0"></div>
 
+    <!-- Top Bar -->
     <div class="relative z-50 flex justify-between items-center px-8 md:px-12 py-8">
         <a href="index.html" class="title tracking-tighter">Spinozas Dog</a>
         <div class="flex gap-x-8 md:gap-x-10">
@@ -41,18 +62,17 @@
 
             <div class="mt-16 flex justify-center gap-x-10 text-lg">
                 <a href="https://www.instagram.com/spinozas_dog/" class="hover:underline">Instagram</a>
-               
+                
             </div>
         </div>
- </div>
+    </div>
 
     <!-- Photo Credit - More Visible -->
     <div class="photo-credit">
         Photography by Mich J Tickle
     </div>
-    </div>
 
-  <script>
+    	<script>
     const images = [
         "assets/spinozas-dog-test-1.jpg",
         "assets/spinozas-dog-test-10.jpg",
@@ -71,6 +91,7 @@
             current = (current + 1) % images.length;
         }
         setInterval(changeBg, 7000); changeBg();
+        changeBg();
     </script>
 </body>
 </html>
