@@ -3,51 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recordings | Spinozas Dog</title>
+    <title>Recordings — Spinozas Dog</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap');
-        body { font-family: 'Geist', system_ui, sans-serif; }
-        .hero-bg { background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; }
-        .content-overlay { background: rgba(0, 0, 0, 0.68); backdrop-filter: blur(8px); }
-        .nav-link { transition: all 0.3s ease; }
-        .nav-link:hover, .nav-link.active { color: white; letter-spacing: 0.05em; }
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap');
+        body { font-family: 'Geist', system-ui, sans-serif; font-weight: 400; }
+        .hero-bg { background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; transition: background-image 1.8s ease-in-out; }
+        .content { background: rgba(0, 0, 0, 0.65); backdrop-filter: blur(12px); }
+        .page-title { font-size: 3rem; }
+        .nav-link { transition: color 0.3s ease; }
+        .nav-link:hover { color: #aaa; }
     </style>
 </head>
 <body class="bg-black text-white">
-    <!-- NAV same as above, change active to Recordings -->
-    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-md">
-        <div class="max-w-screen-2xl mx-auto px-8 py-6 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-x-3">
-                <div class="w-7 h-7 bg-white rounded-full flex items-center justify-center text-black text-sm font-bold">SD</div>
-                <span class="text-2xl font-semibold tracking-tighter">SPINOZAS DOG</span>
-            </a>
-            <div class="flex gap-x-8 text-sm font-medium uppercase tracking-widest">
-                <a href="index.html" class="nav-link">About</a>
-                <a href="performances.html" class="nav-link">Performances</a>
-                <a href="recordings.html" class="nav-link active">Recordings</a>
-                <a href="bookings.html" class="nav-link">Bookings</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-            </div>
-        </div>
-    </nav>
 
-    <section class="hero-bg relative" style="background-image: url('https://picsum.photos/id/201/2000/1400')">
-        <div class="content-overlay absolute inset-0"></div>
-        <div class="relative z-10 max-w-3xl mx-auto px-8 pt-32">
-            <h1 class="text-6xl font-bold tracking-tighter mb-12">RECORDINGS</h1>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-2xl font-medium">“Howling at Eternity” (2025)</h3>
-                    <p class="text-white/70 mt-2">Latest EP • 6 tracks</p>
+    <div id="slideshow" class="hero-bg fixed inset-0 z-0"></div>
+
+    <div class="relative z-10 min-h-screen flex flex-col">
+        <div class="flex-1 flex items-center justify-center px-6 py-20">
+            <div class="content rounded-3xl max-w-2xl mx-auto p-12 text-center">
+                <h1 class="page-title tracking-tighter mb-12">Recordings</h1>
+                
+                <div class="mb-10">
+                    <p class="text-xl mb-2">Howling at Eternity</p>
+                    <p class="text-white/60">2025 • EP</p>
                 </div>
-                <div>
-                    <h3 class="text-2xl font-medium">“Spinoza’s Teeth” (2023)</h3>
-                    <p class="text-white/70 mt-2">Debut Album • 9 tracks</p>
+
+                <!-- Simple Custom Player -->
+                <div class="bg-black/80 border border-white/20 rounded-2xl p-8 mb-12">
+                    <button onclick="togglePlay()" id="recPlayBtn"
+                            class="w-16 h-16 rounded-full bg-white text-black text-4xl mx-auto flex items-center justify-center mb-6 hover:scale-105 transition">
+                        ▶
+                    </button>
+                    <audio id="recordingPlayer" loop>
+                        <source src="assets/track.mp3" type="audio/mpeg">
+                    </audio>
+                    <p class="text-sm text-white/60">Title Track — Howling at Eternity</p>
                 </div>
+
+                <p class="text-white/70">Full releases also available on Bandcamp and Spotify.</p>
             </div>
         </div>
-    </section>
+
+        <!-- Bottom Navigation -->
+        <div class="py-10 flex justify-center gap-x-8 text-lg">
+            <a href="index.html" class="nav-link">About</a>
+            <a href="performances.html" class="nav-link">Performances</a>
+            <a href="recordings.html" class="nav-link">Recordings</a>
+            <a href="bookings.html" class="nav-link">Bookings</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+    </div>
+
+    <script>
+        // Slideshow
+        const images = ["https://picsum.photos/id/1015/2000/1400","https://picsum.photos/id/133/2000/1400","https://picsum.photos/id/201/2000/1400","https://picsum.photos/id/251/2000/1400","https://picsum.photos/id/870/2000/1400"];
+        let current = 0;
+        const slideshow = document.getElementById('slideshow');
+        function changeBg() { slideshow.style.backgroundImage = `url('${images[current]}')`; current = (current + 1) % images.length; }
+        setInterval(changeBg, 6500); changeBg();
+
+        // Recording Player
+        const recAudio = document.getElementById('recordingPlayer');
+        function togglePlay() {
+            if (recAudio.paused) {
+                recAudio.play();
+                document.getElementById('recPlayBtn').textContent = '❚❚';
+            } else {
+                recAudio.pause();
+                document.getElementById('recPlayBtn').textContent = '▶';
+            }
+        }
+    </script>
 </body>
 </html>
