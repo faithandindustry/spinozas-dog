@@ -9,50 +9,19 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap');
         body { font-family: 'Geist', system-ui, sans-serif; font-weight: 400; }
-        .hero-bg { background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; transition: background-image 1.8s ease-in-out; }
-        .content { background: rgba(0, 0, 0, 0.65); backdrop-filter: blur(12px); }
-        .page-title { font-size: 3rem; }
-        .nav-link { transition: color 0.3s ease; }
-        .nav-link:hover { color: #aaa; }
+        .hero-bg { background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; transition: background-image 2s ease-in-out; }
+        .title { font-size: 3.2rem; letter-spacing: -0.04em; }
+        .nav-link { font-size: 1.1rem; transition: color 0.3s ease; }
+        .nav-link:hover { color: #ccc; }
     </style>
 </head>
 <body class="bg-black text-white">
 
     <div id="slideshow" class="hero-bg fixed inset-0 z-0"></div>
 
-    <div class="relative z-10 min-h-screen flex flex-col">
-        <div class="flex-1 flex items-center justify-center px-6 py-20">
-            <div class="content rounded-3xl max-w-2xl mx-auto p-12">
-                <h1 class="page-title tracking-tighter mb-12 text-center">Performances</h1>
-                
-                <div class="space-y-12">
-                    <div>
-                        <h2 class="text-xl text-white/60 mb-4">UPCOMING</h2>
-                        <div class="space-y-6">
-                            <div class="flex justify-between border-b border-white/10 pb-4">
-                                <div>
-                                    <div class="font-medium">18 June 2026 — Berlin</div>
-                                    <div class="text-white/70">Kantine am Berghain</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h2 class="text-xl text-white/60 mb-4">PAST SHOWS</h2>
-                        <div class="space-y-5 text-white/70">
-                            <div>12 April 2025 — London @ The Windmill</div>
-                            <div>05 March 2025 — Amsterdam @ OT301</div>
-                            <div>22 February 2025 — Paris @ Petit Bain</div>
-                            <div>10 January 2025 — Brussels @ Ancienne Belgique</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bottom Navigation -->
-        <div class="py-10 flex justify-center gap-x-8 text-lg">
+    <div class="relative z-50 flex justify-between items-center px-8 md:px-12 py-8">
+        <a href="index.html" class="title tracking-tighter">Spinozas Dog</a>
+        <div class="flex gap-x-8 md:gap-x-10">
             <a href="index.html" class="nav-link">About</a>
             <a href="performances.html" class="nav-link">Performances</a>
             <a href="recordings.html" class="nav-link">Recordings</a>
@@ -61,16 +30,42 @@
         </div>
     </div>
 
+    <div class="relative z-10 flex items-center justify-center min-h-[calc(100vh-120px)] px-6">
+        <div class="max-w-2xl">
+            <h1 class="text-5xl tracking-tighter mb-12">Performances</h1>
+            
+            <div class="space-y-10">
+                <div>
+                    <h2 class="uppercase text-sm tracking-widest text-white/60 mb-4">Upcoming</h2>
+                    <div class="space-y-6">
+                        <div class="flex justify-between border-b border-white/10 pb-6">
+                            <div>
+                                <div>18 June 2026 — Berlin</div>
+                                <div class="text-white/70">Kantine am Berghain</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="uppercase text-sm tracking-widest text-white/60 mb-4">Past Shows</h2>
+                    <div class="grid grid-cols-1 gap-y-3 text-white/70">
+                        <div>12 April 2025 — London @ The Windmill</div>
+                        <div>05 March 2025 — Amsterdam @ OT301</div>
+                        <div>22 February 2025 — Paris @ Petit Bain</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Same slideshow script as index.html
+        // Same slideshow + copy the script from index.html
         const images = ["https://picsum.photos/id/1015/2000/1400","https://picsum.photos/id/133/2000/1400","https://picsum.photos/id/201/2000/1400","https://picsum.photos/id/251/2000/1400","https://picsum.photos/id/870/2000/1400"];
         let current = 0;
         const slideshow = document.getElementById('slideshow');
-        function changeBg() {
-            slideshow.style.backgroundImage = `url('${images[current]}')`;
-            current = (current + 1) % images.length;
-        }
-        setInterval(changeBg, 6500); changeBg();
+        function changeBg() { slideshow.style.backgroundImage = `url('${images[current]}')`; current = (current + 1) % images.length; }
+        setInterval(changeBg, 7000); changeBg();
     </script>
 </body>
 </html>
