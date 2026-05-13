@@ -5,56 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spinozas Dog</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap');
-        body { font-family: 'Geist', system_ui, sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap');
+        body { font-family: 'Geist', system-ui, sans-serif; font-weight: 400; }
+        
         .hero-bg {
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            transition: background-image 1.8s ease-in-out;
             min-height: 100vh;
         }
-        .content-overlay { background: rgba(0, 0, 0, 0.68); backdrop-filter: blur(8px); }
-        .nav-link { transition: all 0.3s ease; }
-        .nav-link:hover, .nav-link.active { color: white; letter-spacing: 0.05em; }
+        
+        .content { background: rgba(0, 0, 0, 0.65); backdrop-filter: blur(12px); }
+        
+        .title { font-size: 5.5rem; line-height: 1.05; }
+        .page-title { font-size: 3rem; }
+        
+        .nav-link { transition: color 0.3s ease; }
+        .nav-link:hover { color: #aaa; }
     </style>
 </head>
 <body class="bg-black text-white">
-    <!-- NAV -->
-    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-md">
-        <div class="max-w-screen-2xl mx-auto px-8 py-6 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-x-3">
-                <div class="w-7 h-7 bg-white rounded-full flex items-center justify-center text-black text-sm font-bold">SD</div>
-                <span class="text-2xl font-semibold tracking-tighter">SPINOZAS DOG</span>
-            </a>
-            <div class="flex gap-x-8 text-sm font-medium uppercase tracking-widest">
-                <a href="index.html" class="nav-link active">About</a>
-                <a href="performances.html" class="nav-link">Performances</a>
-                <a href="recordings.html" class="nav-link">Recordings</a>
-                <a href="bookings.html" class="nav-link">Bookings</a>
-                <a href="contact.html" class="nav-link">Contact</a>
+
+    <!-- Background Slideshow -->
+    <div id="slideshow" class="hero-bg fixed inset-0 z-0"></div>
+
+    <div class="relative z-10 min-h-screen flex flex-col">
+        
+        <!-- Main Content -->
+        <div class="flex-1 flex items-center justify-center px-6">
+            <div class="content rounded-3xl max-w-2xl mx-auto p-12 text-center">
+                <h1 class="title tracking-tighter mb-6">Spinozas Dog</h1>
+                <p class="text-2xl text-white/70 mb-10">experimental rock • psychedelic folk • noise</p>
+                
+                <div class="text-lg leading-relaxed text-white/80 max-w-md mx-auto">
+                    <p class="mb-6">Music born from philosophy and instinct.</p>
+                    <p>We blend jagged guitars, tender melodies, and noise into something untamed.</p>
+                </div>
+
+                <!-- Audio Player -->
+                <div class="mt-16">
+                    <div class="inline-flex items-center gap-4 bg-black/70 border border-white/20 rounded-2xl px-6 py-4">
+                        <button id="playBtn" class="w-11 h-11 rounded-full bg-white text-black flex items-center justify-center text-2xl hover:scale-105 transition">▶</button>
+                        <div class="text-left">
+                            <p class="text-sm">Howling at Eternity</p>
+                            <p class="text-xs text-white/50">2025</p>
+                        </div>
+                        <audio id="player" loop>
+                            <source src="assets/track.mp3" type="audio/mpeg">
+                        </audio>
+                        <button id="muteBtn" class="text-white/60 hover:text-white text-sm">mute</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
 
-    <!-- HERO -->
-    <section class="hero-bg relative" style="background-image: url('https://picsum.photos/id/1015/2000/1400')">
-        <div class="content-overlay absolute inset-0"></div>
-        <div class="relative z-10 max-w-3xl mx-auto px-8 pt-32 pb-20 text-center">
-            <h1 class="text-7xl md:text-8xl font-bold tracking-tighter leading-none mb-6">SPINOZAS DOG</h1>
-            <p class="text-2xl text-white/70 mb-12">Experimental Rock • Psychedelic Folk • Noise</p>
-            
-            <div class="prose prose-invert mx-auto text-lg leading-relaxed max-w-2xl">
-                <p>Spinozas Dog is a sonic collective formed in 2022. We create music that lives between philosophy and chaos — raw, emotional, and untamed.</p>
-                <p>Inspired by Spinoza’s quest for truth and the wild freedom of stray dogs, we blend jagged guitars, hypnotic rhythms, tender melodies, and noise into something uniquely ours.</p>
-            </div>
-
-            <div class="mt-16 flex flex-wrap justify-center gap-6">
-                <a href="performances.html" class="px-10 py-5 border border-white/70 hover:bg-white hover:text-black transition-all font-medium tracking-wider">LIVE DATES</a>
-                <a href="recordings.html" class="px-10 py-5 bg-white text-black hover:bg-transparent hover:text-white border border-white transition-all font-medium tracking-wider">LISTEN</a>
-            </div>
+        <!-- Bottom Navigation -->
+        <div class="py-10 flex justify-center gap-x-8 text-lg">
+            <a href="index.html" class="nav-link">About</a>
+            <a href="performances.html" class="nav-link">Performances</a>
+            <a href="recordings.html" class="nav-link">Recordings</a>
+            <a href="bookings.html" class="nav-link">Bookings</a>
+            <a href="contact.html" class="nav-link">Contact</a>
         </div>
-    </section>
+    </div>
+
+    <script>
+        // Background Slideshow
+        const images = [
+            "https://picsum.photos/id/1015/2000/1400",
+            "https://picsum.photos/id/133/2000/1400",
+            "https://picsum.photos/id/201/2000/1400",
+            "https://picsum.photos/id/251/2000/1400",
+            "https://picsum.photos/id/870/2000/1400"
+        ];
+        let current = 0;
+        const slideshow = document.getElementById('slideshow');
+
+        function changeBg() {
+            slideshow.style.backgroundImage = `url('${images[current]}')`;
+            current = (current + 1) % images.length;
+        }
+        setInterval(changeBg, 6500);
+        changeBg();
+
+        // Audio Player
+        const audio = document.getElementById('player');
+        const playBtn = document.getElementById('playBtn');
+        const muteBtn = document.getElementById('muteBtn');
+        let muted = false;
+
+        playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playBtn.textContent = '❚❚';
+            } else {
+                audio.pause();
+                playBtn.textContent = '▶';
+            }
+        });
+
+        muteBtn.addEventListener('click', () => {
+            muted = !muted;
+            audio.muted = muted;
+            muteBtn.textContent = muted ? 'unmute' : 'mute';
+        });
+    </script>
 </body>
 </html>
