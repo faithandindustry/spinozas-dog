@@ -9,24 +9,29 @@
   
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap');
-        body {
-            font-family: 'Geist', system-ui, sans-serif;
-            font-weight: 400;
+        body { 
+            font-family: 'Geist', system-ui, sans-serif; 
+            font-weight: 400; 
         }
       
         .hero-bg {
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            transition: background-image 2s ease-in-out;
             min-height: 100vh;
+            transition: background-image 2s ease-in-out;
         }
       
-        .title { font-size: 3.2rem; letter-spacing: -0.04em; }
-        .nav-link { font-size: 1.1rem; transition: color 0.3s ease; }
+        .title { 
+            font-size: 3.2rem; 
+            letter-spacing: -0.04em; 
+        }
+        .nav-link { 
+            font-size: 1.1rem; 
+            transition: color 0.3s ease; 
+        }
         .nav-link:hover { color: #ccc; }
 
-        /* Photo Credit */
         .photo-credit {
             position: fixed;
             bottom: 30px;
@@ -37,6 +42,16 @@
             text-align: right;
             pointer-events: none;
             text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
+
+        /* Mobile Navigation - Stack under title */
+        @media (max-width: 768px) {
+            .title { 
+                font-size: 2.35rem; 
+            }
+            .nav-link { 
+                font-size: 1rem; 
+            }
         }
 
         /* ============== MOBILE RESPONSIVENESS ============== */
