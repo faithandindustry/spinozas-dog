@@ -6,10 +6,13 @@
     <title>Contact — Spinozas Dog</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap">
-    <style>
+ <style>
         @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap');
-        body { font-family: 'Geist', system-ui, sans-serif; font-weight: 400; }
-     
+        body { 
+            font-family: 'Geist', system-ui, sans-serif; 
+            font-weight: 400; 
+        }
+      
         .hero-bg {
             background-size: cover;
             background-position: center;
@@ -17,11 +20,17 @@
             min-height: 100vh;
             transition: background-image 2s ease-in-out;
         }
-     
-        .title { font-size: 3.2rem; letter-spacing: -0.04em; }
-        .nav-link { font-size: 1.1rem; transition: color 0.3s ease; }
-        .nav-link:hover { color: #ccc; }
       
+        .title { 
+            font-size: 3.2rem; 
+            letter-spacing: -0.04em; 
+        }
+        .nav-link { 
+            font-size: 1.1rem; 
+            transition: color 0.3s ease; 
+        }
+        .nav-link:hover { color: #ccc; }
+
         .photo-credit {
             position: fixed;
             bottom: 30px;
@@ -33,6 +42,37 @@
             pointer-events: none;
             text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
+
+        /* Mobile Navigation - Stack under title */
+        @media (max-width: 768px) {
+            .title { 
+                font-size: 2.35rem; 
+            }
+            .nav-link { 
+                font-size: 1rem; 
+            }
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+
+    <!-- Background Slideshow -->
+    <div id="slideshow" class="hero-bg fixed inset-0 z-0"></div>
+
+    <!-- Top Bar - Mobile Friendly -->
+    <div class="relative z-50 px-6 md:px-12 py-6 md:py-8">
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-6 md:gap-0">
+            <a href="index.html" class="title tracking-tighter text-center md:text-left">Spinozas Dog</a>
+            
+            <div class="flex flex-wrap justify-center gap-x-5 md:gap-x-8 text-base md:text-[1.1rem]">
+                <a href="index.html" class="nav-link">About</a>
+                <a href="performances.html" class="nav-link">Performances</a>
+                <a href="recordings.html" class="nav-link">Recordings</a>
+                <a href="bookings.html" class="nav-link">Bookings</a>
+                <a href="contact.html" class="nav-link">Network</a>
+            </div>
+        </div>
+    </div>
 
         /* ============== MOBILE RESPONSIVENESS ============== */
         @media (max-width: 768px) {
