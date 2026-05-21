@@ -13,8 +13,8 @@
         .title { font-size: 3.2rem; letter-spacing: -0.04em; }
         .nav-link { font-size: 1.1rem; transition: color 0.3s ease; }
         .nav-link:hover { color: #ccc; }
-
-           .photo-credit {
+        
+        .photo-credit {
             position: fixed;
             bottom: 30px;
             right: 30px;
@@ -25,12 +25,40 @@
             pointer-events: none;
             text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
+
+        /* ============== MOBILE RESPONSIVENESS ============== */
+        @media (max-width: 768px) {
+            .title { 
+                font-size: 2.4rem; 
+            }
+            .nav-link { 
+                font-size: 0.95rem; 
+            }
+            .flex.gap-x-8 {
+                gap: 1rem;
+            }
+            .max-w-md {
+                max-width: 100% !important;
+            }
+            .px-8, .md\\:px-12 {
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+            }
+            .text-5xl {
+                font-size: 2.8rem;
+            }
+            .py-8 {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+            .text-2xl {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-black text-white">
-
     <div id="slideshow" class="hero-bg fixed inset-0 z-0"></div>
-
     <div class="relative z-50 flex justify-between items-center px-8 md:px-12 py-8">
         <a href="index.html" class="title tracking-tighter">Spinozas Dog</a>
         <div class="flex gap-x-8 md:gap-x-10">
@@ -41,43 +69,42 @@
             <a href="contact.html" class="nav-link">Network</a>
         </div>
     </div>
-
     <div class="relative z-10 flex items-center justify-center min-h-[calc(100vh-120px)] px-6">
         <div class="max-w-md text-center">
             <h1 class="text-5xl tracking-tighter mb-12">Bookings</h1>
             <p class="text-xl leading-relaxed text-white/80 mb-10">
                 Guitar / Drums / Bass
 <br>
-                Your space 
+                Your space
 <br>
                 We are accepting bookings for 2026 and 2027.
             </p>
-            <a href="mailto:faithandindustry@protonmail.com" 
+            <a href="mailto:faithandindustry@protonmail.com"
                class="block text-2xl border border-white/30 hover:border-white py-6 rounded-3xl transition">
                 Contact
             </a>
         </div>
     </div>
-     <!-- Photo Credit -->
+    
+    <!-- Photo Credit -->
     <div class="photo-credit">
         Photography by Mich J Tickle
     </div>
 
     <script>
         // Background Slideshow
-          const images = [
-    "assets/sd-offbeat-5.jpg",
-    "assets/spinozas-dog-test-10.jpg",
-    "assets/sd-offbeat-9.jpg",
-    "assets/spinozas-dog-test-3.jpg",
-    "assets/sd-offbeat-1.jpg",
-    "assets/sd-offbeat-4.jpg",
-    "assets/sd-offbeat-2.jpg",
-    "assets/spinozas-dog-test-9.jpg",
-    "assets/spinozas-dog-test-1.jpg"
-];
-
-    let current = 0;
+        const images = [
+            "assets/sd-offbeat-5.jpg",
+            "assets/spinozas-dog-test-10.jpg",
+            "assets/sd-offbeat-9.jpg",
+            "assets/spinozas-dog-test-3.jpg",
+            "assets/sd-offbeat-1.jpg",
+            "assets/sd-offbeat-4.jpg",
+            "assets/sd-offbeat-2.jpg",
+            "assets/spinozas-dog-test-9.jpg",
+            "assets/spinozas-dog-test-1.jpg"
+        ];
+        let current = 0;
         const slideshow = document.getElementById('slideshow');
         function changeBg() {
             slideshow.style.backgroundImage = `url('${images[current]}')`;
