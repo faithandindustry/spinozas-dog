@@ -6,11 +6,14 @@
     <title>Spinozas Dog</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap">
-    
+   
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap');
-        body { font-family: 'Geist', system-ui, sans-serif; font-weight: 400; }
-        
+        body { 
+            font-family: 'Geist', system-ui, sans-serif; 
+            font-weight: 400; 
+        }
+       
         .hero-bg {
             background-size: cover;
             background-position: center;
@@ -18,10 +21,23 @@
             transition: background-image 2s ease-in-out;
             min-height: 100vh;
         }
-        
+       
         .title { font-size: 3.2rem; letter-spacing: -0.04em; }
         .nav-link { font-size: 1.1rem; transition: color 0.3s ease; }
         .nav-link:hover { color: #ccc; }
+
+        /* Photo Credit */
+        .photo-credit {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.65);
+            z-index: 100;
+            text-align: right;
+            pointer-events: none;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
     </style>
 </head>
 <body class="bg-black text-white">
@@ -32,7 +48,7 @@
     <!-- Top Bar -->
     <div class="relative z-50 flex justify-between items-center px-8 md:px-12 py-8">
         <a href="index.html" class="title tracking-tighter">Spinozas Dog</a>
-        
+       
         <div class="flex gap-x-8 md:gap-x-10">
             <a href="index.html" class="nav-link">About</a>
             <a href="performances.html" class="nav-link">Performances</a>
@@ -49,15 +65,8 @@
                 Peter Sant • Kristian Craig • Mark Axiak
             </p>
             <div class="text-lg leading-relaxed text-white/80">
-                <p>Spinozas Dog are an experimental instrumental trio based on the island of Malta. 
-                    They create textural ambient, post rock via free improvisation. <br><br>
-                    
-Featuring the original guitar stylings of film maker Peter Sant (Żafżifa). Treating the instrument as sound device using adapted capos, irregular tunings & metallic chop sticks, yet melodic and classic at the same time.
-<br><br>
-On Bass Mark Axiak: a prolific player who’s traversed stages and studios from Australia, New York, Berlin & Oslo. Taking the four string plank into synthesiser realms, with pitched reverse loops and filters.
-<br><br>
-Drums: Kristian Craig aka producer Capitol K. Once described as ‘the punk warlord of groove’ for his electronic programming. Here he takes inspiration from trad rythum, jazz n blues shuffles, using open tone and light touch.
-</p>
+                <p>Spinozas Dog are an experimental instrumental trio based on the island of Malta.
+                    They create textural ambient, post rock via free improvisation.</p>
             </div>
 
             <!-- Audio Player -->
@@ -76,50 +85,63 @@ Drums: Kristian Craig aka producer Capitol K. Once described as ‘the punk warl
             </div>
         </div>
     </div>
-  <!-- Photo Credit - More Visible -->
+
+    <!-- Photo Credit -->
     <div class="photo-credit">
         Photography by Mich J Tickle
     </div>
-  
-<script>
-    const images = [
-         "assets/sd-offbeat-5.jpg",  
-        "assets/sd-offbeat-7.jpg",
-        "assets/spinozas-dog-test-5.jpg",
-        "assets/sd-offbeat-9.jpg",
-        "assets/spinozas-dog-test-6.jpg",
-        "assets/sd-offbeat-2.jpg",
-        "assets/spinozas-dog-test-7.jpg",
-         "assets/spinozas-dog-test-3.jpg",
-        "assets/sd-offbeat-4.jpg",
-        "assets/spinozas-dog-test-9.jpg",
-        "assets/sd-offbeat-6.jpg",
-         "assets/spinozas-dog-test-10.jpg",
-        "assets/sd-offbeat-8.jpg"
-         "assets/sd-offbeat-1.jpg",
-        "assets/sd-offbeat-5.jpg",
-        "assets/spinozas-dog-test-1.jpg", 
-    ];
 
-    let current = 0;
+    <script>
+        // Background Slideshow
+        const images = [
+            "assets/sd-offbeat-5.jpg",
+            "assets/sd-offbeat-7.jpg",
+            "assets/spinozas-dog-test-5.jpg",
+            "assets/sd-offbeat-9.jpg",
+            "assets/spinozas-dog-test-6.jpg",
+            "assets/sd-offbeat-2.jpg",
+            "assets/spinozas-dog-test-7.jpg",
+            "assets/spinozas-dog-test-3.jpg",
+            "assets/sd-offbeat-4.jpg",
+            "assets/spinozas-dog-test-9.jpg",
+            "assets/sd-offbeat-6.jpg",
+            "assets/spinozas-dog-test-10.jpg",
+            "assets/sd-offbeat-8.jpg",
+            "assets/sd-offbeat-1.jpg",
+            "assets/spinozas-dog-test-1.jpg"
+        ];
+
+        let current = 0;
         const slideshow = document.getElementById('slideshow');
+
         function changeBg() {
+            if (images.length === 0) return;
             slideshow.style.backgroundImage = `url('${images[current]}')`;
             current = (current + 1) % images.length;
         }
-        setInterval(changeBg, 7000); changeBg();
 
+        setInterval(changeBg, 7000);
+        changeBg();   // Initial load
+
+        // Audio Player
         const audio = document.getElementById('player');
         const playBtn = document.getElementById('playBtn');
         const muteBtn = document.getElementById('muteBtn');
         let isMuted = false;
 
         playBtn.addEventListener('click', () => {
-            if (audio.paused) { audio.play(); playBtn.textContent = '❚❚'; }
-            else { audio.pause(); playBtn.textContent = '▶'; }
+            if (audio.paused) {
+                audio.play();
+                playBtn.textContent = '❚❚';
+            } else {
+                audio.pause();
+                playBtn.textContent = '▶';
+            }
         });
+
         muteBtn.addEventListener('click', () => {
-            isMuted = !isMuted; audio.muted = isMuted;
+            isMuted = !isMuted;
+            audio.muted = isMuted;
             muteBtn.textContent = isMuted ? 'unmute' : 'mute';
         });
     </script>
