@@ -9,7 +9,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap');
         body { font-family: 'Geist', system-ui, sans-serif; font-weight: 400; }
-      
+     
         .hero-bg {
             background-size: cover;
             background-position: center;
@@ -17,11 +17,11 @@
             min-height: 100vh;
             transition: background-image 2s ease-in-out;
         }
-      
+     
         .title { font-size: 3.2rem; letter-spacing: -0.04em; }
         .nav-link { font-size: 1.1rem; transition: color 0.3s ease; }
         .nav-link:hover { color: #ccc; }
-       
+      
         .photo-credit {
             position: fixed;
             bottom: 30px;
@@ -33,11 +33,47 @@
             pointer-events: none;
             text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
+
+        /* ============== MOBILE RESPONSIVENESS ============== */
+        @media (max-width: 768px) {
+            .title { 
+                font-size: 2.4rem; 
+            }
+            .nav-link { 
+                font-size: 0.95rem; 
+            }
+            .flex.gap-x-8 {
+                gap: 1rem;
+            }
+            .max-w-lg {
+                max-width: 100% !important;
+            }
+            .px-8, .md\\:px-12 {
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+            }
+            .text-5xl {
+                font-size: 2.8rem;
+            }
+            .py-8 {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+            .text-2xl {
+                font-size: 1.6rem;
+            }
+            .p-10 {
+                padding: 1.75rem;
+            }
+            .text-xl {
+                font-size: 1.1rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-black text-white">
     <div id="slideshow" class="hero-bg fixed inset-0 z-0"></div>
-    
+   
     <!-- Top Bar -->
     <div class="relative z-50 flex justify-between items-center px-8 md:px-12 py-8">
         <a href="index.html" class="title tracking-tighter">Spinozas Dog</a>
@@ -49,42 +85,36 @@
             <a href="contact.html" class="nav-link">Network</a>
         </div>
     </div>
-
     <div class="relative z-10 flex items-center justify-center min-h-[calc(100vh-120px)] px-6">
         <div class="max-w-lg text-center">
             <h1 class="text-5xl tracking-tighter mb-12">Contact</h1>
-          
+         
             <!-- Email + Instagram on same line -->
             <div class="flex justify-center items-center gap-x-8 text-xl mb-16">
                 <a href="mailto:faithandindustry@protonmail.com" class="hover:underline">Email</a>
                 <span class="text-white/30">|</span>
                 <a href="https://www.instagram.com/spinozas_dog/" class="hover:underline">Instagram</a>
             </div>
-
             <!-- === Mailing List Signup === -->
             <div class="bg-white/5 border border-white/10 rounded-3xl p-10 mb-16">
                 <h2 class="text-2xl tracking-tighter mb-6">Join our mailing list</h2>
-
                 <form action="https://formspree.io/f/xeedabkd" method="POST" class="space-y-6">
-                    <input type="email" 
-                           name="email" 
+                    <input type="email"
+                           name="email"
                            placeholder="your@email.com"
                            required
                            class="w-full bg-transparent border border-white/30 rounded-2xl px-6 py-4 text-white placeholder:text-white/40 focus:outline-none focus:border-white/60">
-                    
+                   
                     <button type="submit"
                             class="w-full bg-white text-black font-medium py-4 rounded-2xl hover:bg-white/90 transition">
                         Subscribe
                     </button>
                 </form>
-           
-                </p>
             </div>
-
             <!-- Network / Associates Section -->
             <div class="border-t border-white/20 pt-12">
                 <h2 class="text-5xl tracking-tighter mb-8">Network</h2>
-               
+              
                 <div class="grid grid-cols-1 gap-y-7 text-lg">
                     <a href="https://hereonin.org/" class="hover:underline">Hereonin — Peter Sant</a>
                     <a href="https://www.instagram.com/studioxmalta/" class="hover:underline">Studio X — Mark Axiak</a>
@@ -93,12 +123,10 @@
             </div>
         </div>
     </div>
-
     <!-- Photo Credit -->
     <div class="photo-credit">
         Photography by Mich J Tickle
     </div>
-
     <script>
         // Background Slideshow
        const images = [
@@ -114,7 +142,7 @@
         ];
         let current = 0;
         const slideshow = document.getElementById('slideshow');
-       
+      
         function changeBg() {
             slideshow.style.backgroundImage = `url('${images[current]}')`;
             current = (current + 1) % images.length;
