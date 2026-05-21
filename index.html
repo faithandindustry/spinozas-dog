@@ -6,14 +6,14 @@
     <title>Spinozas Dog</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap">
-   
+  
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap');
-        body { 
-            font-family: 'Geist', system-ui, sans-serif; 
-            font-weight: 400; 
+        body {
+            font-family: 'Geist', system-ui, sans-serif;
+            font-weight: 400;
         }
-       
+      
         .hero-bg {
             background-size: cover;
             background-position: center;
@@ -21,7 +21,7 @@
             transition: background-image 2s ease-in-out;
             min-height: 100vh;
         }
-       
+      
         .title { font-size: 3.2rem; letter-spacing: -0.04em; }
         .nav-link { font-size: 1.1rem; transition: color 0.3s ease; }
         .nav-link:hover { color: #ccc; }
@@ -38,17 +38,47 @@
             pointer-events: none;
             text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
+
+        /* ============== MOBILE RESPONSIVENESS ============== */
+        @media (max-width: 768px) {
+            .title { 
+                font-size: 2.4rem; 
+            }
+            .nav-link { 
+                font-size: 0.95rem; 
+            }
+            .flex.gap-x-8 {
+                gap: 1rem;
+            }
+            .max-w-xl {
+                max-width: 100% !important;
+            }
+            .px-8, .md\\:px-12 {
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+            }
+            .text-2xl {
+                font-size: 1.4rem;
+            }
+            .text-lg {
+                font-size: 1.05rem;
+                line-height: 1.6;
+            }
+            .py-8 {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-black text-white">
-
     <!-- Background Slideshow -->
     <div id="slideshow" class="hero-bg fixed inset-0 z-0"></div>
-
+    
     <!-- Top Bar -->
     <div class="relative z-50 flex justify-between items-center px-8 md:px-12 py-8">
         <a href="index.html" class="title tracking-tighter">Spinozas Dog</a>
-       
+      
         <div class="flex gap-x-8 md:gap-x-10">
             <a href="index.html" class="nav-link">About</a>
             <a href="performances.html" class="nav-link">Performances</a>
@@ -67,18 +97,17 @@
             <div class="text-lg leading-relaxed text-white/80">
                 <p>Spinozas Dog are an experimental instrumental trio based on the island of Malta.
                     They create textural ambient, post rock via free improvisation.</p>
-                <br>  
-                Featuring the original guitar stylings of film maker Peter Sant (Żafżifa). 
-                Treating the instrument as sound device using adapted capos, irregular tunings & metallic chop sticks, 
+                <br>
+                Featuring the original guitar stylings of film maker Peter Sant (Żafżifa).
+                Treating the instrument as sound device using adapted capos, irregular tunings & metallic chop sticks,
                 yet melodic and classic at the same time.</p>
-<br>
-                On Bass Mark Axiak: a prolific player who’s traversed stages and studios from Australia, 
+                <br>
+                On Bass Mark Axiak: a prolific player who’s traversed stages and studios from Australia,
                 New York, Berlin & Oslo. Taking the four string plank into synthesis realms, with pitched fx, reverse loops and filters.</p>
-<br>
-                Drums: Kristian Craig aka producer Capitol K. Once described as ‘the punk warlord of groove’ 
-                for his electronic programming. Here he takes inspiration from trad rythum, jazz n blues shuffles, 
+                <br>
+                Drums: Kristian Craig aka producer Capitol K. Once described as ‘the punk warlord of groove’
+                for his electronic programming. Here he takes inspiration from trad rythum, jazz n blues shuffles,
                 using open tone and light touch.
-</p>
             </div>
 
             <!-- Audio Player -->
@@ -105,29 +134,27 @@
 
     <script>
         // Background Slideshow
-   const images = [
-    "assets/sd-offbeat-5.jpg",
-    "assets/spinozas-dog-test-10.jpg",
-    "assets/sd-offbeat-9.jpg",
-    "assets/spinozas-dog-test-3.jpg",
-    "assets/sd-offbeat-1.jpg",
-    "assets/sd-offbeat-4.jpg",
-    "assets/sd-offbeat-2.jpg",
-    "assets/spinozas-dog-test-9.jpg",
-    "assets/spinozas-dog-test-1.jpg"
-];
-
+        const images = [
+            "assets/sd-offbeat-5.jpg",
+            "assets/spinozas-dog-test-10.jpg",
+            "assets/sd-offbeat-9.jpg",
+            "assets/spinozas-dog-test-3.jpg",
+            "assets/sd-offbeat-1.jpg",
+            "assets/sd-offbeat-4.jpg",
+            "assets/sd-offbeat-2.jpg",
+            "assets/spinozas-dog-test-9.jpg",
+            "assets/spinozas-dog-test-1.jpg"
+        ];
         let current = 0;
         const slideshow = document.getElementById('slideshow');
-
+        
         function changeBg() {
             if (images.length === 0) return;
             slideshow.style.backgroundImage = `url('${images[current]}')`;
             current = (current + 1) % images.length;
         }
-
         setInterval(changeBg, 7000);
-        changeBg();   // Initial load
+        changeBg(); // Initial load
 
         // Audio Player
         const audio = document.getElementById('player');
