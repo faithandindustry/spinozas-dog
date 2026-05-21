@@ -6,14 +6,14 @@
     <title>Spinozas Dog</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap">
-  
+ 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap');
-        body { 
-            font-family: 'Geist', system-ui, sans-serif; 
-            font-weight: 400; 
+        body {
+            font-family: 'Geist', system-ui, sans-serif;
+            font-weight: 400;
         }
-      
+     
         .hero-bg {
             background-size: cover;
             background-position: center;
@@ -21,14 +21,14 @@
             min-height: 100vh;
             transition: background-image 2s ease-in-out;
         }
-      
-        .title { 
-            font-size: 3.2rem; 
-            letter-spacing: -0.04em; 
+     
+        .title {
+            font-size: 3.2rem;
+            letter-spacing: -0.04em;
         }
-        .nav-link { 
-            font-size: 1.1rem; 
-            transition: color 0.3s ease; 
+        .nav-link {
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
         }
         .nav-link:hover { color: #ccc; }
 
@@ -44,7 +44,7 @@
             text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
-        /* Mobile Navigation - Stack under title */
+        /* ============== MOBILE RESPONSIVENESS ============== */
         @media (max-width: 768px) {
             .title { 
                 font-size: 2.35rem; 
@@ -52,36 +52,11 @@
             .nav-link { 
                 font-size: 1rem; 
             }
-        }
-
-        /* ============== MOBILE RESPONSIVENESS ============== */
-        @media (max-width: 768px) {
-            .title { 
-                font-size: 2.4rem; 
-            }
-            .nav-link { 
-                font-size: 0.95rem; 
-            }
-            .flex.gap-x-8 {
-                gap: 1rem;
-            }
-            .max-w-xl {
-                max-width: 100% !important;
-            }
-            .px-8, .md\\:px-12 {
-                padding-left: 1.25rem;
-                padding-right: 1.25rem;
-            }
-            .text-2xl {
-                font-size: 1.4rem;
-            }
-            .text-lg {
-                font-size: 1.05rem;
-                line-height: 1.6;
-            }
-            .py-8 {
-                padding-top: 1.5rem;
-                padding-bottom: 1.5rem;
+            /* Stack navigation under title on small screens */
+            .top-bar-container {
+                flex-direction: column;
+                gap: 1.25rem;
+                text-align: center;
             }
         }
     </style>
@@ -89,17 +64,19 @@
 <body class="bg-black text-white">
     <!-- Background Slideshow -->
     <div id="slideshow" class="hero-bg fixed inset-0 z-0"></div>
-    
-    <!-- Top Bar -->
-    <div class="relative z-50 flex justify-between items-center px-8 md:px-12 py-8">
-        <a href="index.html" class="title tracking-tighter">Spinozas Dog</a>
-      
-        <div class="flex gap-x-8 md:gap-x-10">
-            <a href="index.html" class="nav-link">About</a>
-            <a href="performances.html" class="nav-link">Performances</a>
-            <a href="recordings.html" class="nav-link">Recordings</a>
-            <a href="bookings.html" class="nav-link">Bookings</a>
-            <a href="contact.html" class="nav-link">Network</a>
+   
+    <!-- Top Bar - FIXED FOR MOBILE -->
+    <div class="relative z-50 px-6 md:px-12 py-6 md:py-8">
+        <div class="top-bar-container flex flex-col md:flex-row md:justify-between md:items-center gap-6 md:gap-0">
+            <a href="index.html" class="title tracking-tighter text-center md:text-left">Spinozas Dog</a>
+            
+            <div class="flex flex-wrap justify-center gap-x-5 md:gap-x-8">
+                <a href="index.html" class="nav-link">About</a>
+                <a href="performances.html" class="nav-link">Performances</a>
+                <a href="recordings.html" class="nav-link">Recordings</a>
+                <a href="bookings.html" class="nav-link">Bookings</a>
+                <a href="contact.html" class="nav-link">Network</a>
+            </div>
         </div>
     </div>
 
@@ -162,14 +139,14 @@
         ];
         let current = 0;
         const slideshow = document.getElementById('slideshow');
-        
+       
         function changeBg() {
             if (images.length === 0) return;
             slideshow.style.backgroundImage = `url('${images[current]}')`;
             current = (current + 1) % images.length;
         }
         setInterval(changeBg, 7000);
-        changeBg(); // Initial load
+        changeBg();
 
         // Audio Player
         const audio = document.getElementById('player');
