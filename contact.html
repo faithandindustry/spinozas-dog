@@ -9,7 +9,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap');
         body { font-family: 'Geist', system-ui, sans-serif; font-weight: 400; }
-       
+      
         .hero-bg {
             background-size: cover;
             background-position: center;
@@ -17,11 +17,11 @@
             min-height: 100vh;
             transition: background-image 2s ease-in-out;
         }
-       
+      
         .title { font-size: 3.2rem; letter-spacing: -0.04em; }
         .nav-link { font-size: 1.1rem; transition: color 0.3s ease; }
         .nav-link:hover { color: #ccc; }
-        
+       
         .photo-credit {
             position: fixed;
             bottom: 30px;
@@ -36,9 +36,8 @@
     </style>
 </head>
 <body class="bg-black text-white">
-
     <div id="slideshow" class="hero-bg fixed inset-0 z-0"></div>
-
+    
     <!-- Top Bar -->
     <div class="relative z-50 flex justify-between items-center px-8 md:px-12 py-8">
         <a href="index.html" class="title tracking-tighter">Spinozas Dog</a>
@@ -54,22 +53,44 @@
     <div class="relative z-10 flex items-center justify-center min-h-[calc(100vh-120px)] px-6">
         <div class="max-w-lg text-center">
             <h1 class="text-5xl tracking-tighter mb-12">Contact</h1>
-           
+          
             <div class="space-y-8 text-xl mb-16">
                 <p><a href="mailto:faithandindustry@protonmail.com" class="hover:underline">Email</a></p>
-          <br><br>
-<a href="https://www.instagram.com/spinozas_dog/" class="hover:underline">Instagram</a>
+                <br><br>
+                <a href="https://www.instagram.com/spinozas_dog/" class="hover:underline">Instagram</a>
+            </div>
+
+            <!-- === Mailing List Signup === -->
+            <div class="bg-white/5 border border-white/10 rounded-3xl p-10 mb-16">
+                <h2 class="text-2xl tracking-tighter mb-6">Join our mailing list</h2>
+                <p class="text-white/70 mb-8">Get updates on new music, performances and releases.</p>
+                
+                <form action="https://formspree.io/f/xeedabkd" method="POST" class="space-y-6">
+                    <input type="email" 
+                           name="email" 
+                           placeholder="your@email.com"
+                           required
+                           class="w-full bg-transparent border border-white/30 rounded-2xl px-6 py-4 text-white placeholder:text-white/40 focus:outline-none focus:border-white/60">
+                    
+                    <button type="submit"
+                            class="w-full bg-white text-black font-medium py-4 rounded-2xl hover:bg-white/90 transition">
+                        Subscribe
+                    </button>
+                </form>
+                
+                <p class="text-[10px] text-white/40 mt-6">
+                    We respect your privacy • You can unsubscribe anytime
+                </p>
+            </div>
+
             <!-- Network / Associates Section -->
             <div class="border-t border-white/20 pt-12">
                 <h2 class="text-5xl tracking-tighter mb-8">Network</h2>
-                
+               
                 <div class="grid grid-cols-1 gap-y-7 text-lg">
-                    
-                    <!-- Add your band members & associates here -->
                     <a href="https://hereonin.org/" class="hover:underline">Hereonin — Peter Sant</a>
                     <a href="https://www.instagram.com/studioxmalta/" class="hover:underline">Studio X — Mark Axiak</a>
                     <a href="https://capitolk.com/" class="hover:underline">Capitol K — Kristian Craig</a>
-                    
                 </div>
             </div>
         </div>
@@ -80,27 +101,22 @@
         Photography by Mich J Tickle
     </div>
 
- <!-- Photo Credit -->
-    <div class="photo-credit">
-        Photography by Mich J Tickle
-    </div>
-
     <script>
         // Background Slideshow
        const images = [
-    "assets/sd-offbeat-5.jpg",
-    "assets/spinozas-dog-test-10.jpg",
-    "assets/sd-offbeat-9.jpg",
-    "assets/spinozas-dog-test-3.jpg",
-    "assets/sd-offbeat-1.jpg",
-    "assets/sd-offbeat-4.jpg",
-    "assets/sd-offbeat-2.jpg",
-    "assets/spinozas-dog-test-9.jpg",
-    "assets/spinozas-dog-test-1.jpg"
-];
+            "assets/sd-offbeat-5.jpg",
+            "assets/spinozas-dog-test-10.jpg",
+            "assets/sd-offbeat-9.jpg",
+            "assets/spinozas-dog-test-3.jpg",
+            "assets/sd-offbeat-1.jpg",
+            "assets/sd-offbeat-4.jpg",
+            "assets/sd-offbeat-2.jpg",
+            "assets/spinozas-dog-test-9.jpg",
+            "assets/spinozas-dog-test-1.jpg"
+        ];
         let current = 0;
         const slideshow = document.getElementById('slideshow');
-        
+       
         function changeBg() {
             slideshow.style.backgroundImage = `url('${images[current]}')`;
             current = (current + 1) % images.length;
