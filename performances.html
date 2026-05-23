@@ -6,22 +6,23 @@
     <title>Performances — Spinozas Dog</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap">
-    
+   
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap');
         body {
             font-family: 'Geist', system-ui, sans-serif;
             font-weight: 400;
         }
-     
+    
         .hero-bg {
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             min-height: 100vh;
             transition: background-image 2s ease-in-out;
+            background-color: #111;        /* Prevents black flash between images */
         }
-     
+    
         .title {
             font-size: 3.2rem;
             letter-spacing: -0.04em;
@@ -44,7 +45,7 @@
             text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
-        /* Mobile Navigation - Stack under title */
+        /* ============== MOBILE RESPONSIVENESS ============== */
         @media (max-width: 768px) {
             .title { 
                 font-size: 2.35rem; 
@@ -52,10 +53,6 @@
             .nav-link { 
                 font-size: 1rem; 
             }
-        }
-
-        /* General Mobile Improvements */
-        @media (max-width: 768px) {
             .max-w-2xl {
                 max-width: 100% !important;
             }
@@ -65,10 +62,6 @@
             }
             .text-5xl {
                 font-size: 2.8rem;
-            }
-            .py-8 {
-                padding-top: 1.5rem;
-                padding-bottom: 1.5rem;
             }
         }
     </style>
@@ -82,7 +75,7 @@
     <div class="relative z-50 px-6 md:px-12 py-6 md:py-8">
         <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-6 md:gap-0">
             <a href="index.html" class="title tracking-tighter text-center md:text-left">Spinozas Dog</a>
-            
+           
             <div class="flex flex-wrap justify-center gap-x-5 md:gap-x-8">
                 <a href="index.html" class="nav-link">About</a>
                 <a href="performances.html" class="nav-link">Performances</a>
@@ -96,7 +89,7 @@
     <div class="relative z-10 flex items-center justify-center min-h-[calc(100vh-120px)] px-6">
         <div class="max-w-2xl">
             <h1 class="text-5xl tracking-tighter mb-12">Performances</h1>
-          
+         
             <div class="space-y-10">
                 <div>
                     <h2 class="uppercase text-sm tracking-widest text-white/60 mb-4">Upcoming</h2>
@@ -119,14 +112,14 @@
             </div>
         </div>
     </div>
-   
+  
     <!-- Photo Credit -->
     <div class="photo-credit">
         Photography by Mich J Tickle
     </div>
 
     <script>
-        // Background Slideshow
+        // Background Slideshow - Improved (Preload to reduce black flash)
         const images = [
             "assets/sd-offbeat-5.jpg",
             "assets/spinozas-dog-test-10.jpg",
@@ -138,15 +131,26 @@
             "assets/spinozas-dog-test-9.jpg",
             "assets/spinozas-dog-test-1.jpg"
         ];
+
         let current = 0;
         const slideshow = document.getElementById('slideshow');
-        
+
+        // Preload images
+        function preloadImages() {
+            images.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        }
+
         function changeBg() {
             slideshow.style.backgroundImage = `url('${images[current]}')`;
             current = (current + 1) % images.length;
         }
-        setInterval(changeBg, 7000);
-        changeBg();
+
+        preloadImages();
+        changeBg();                    // Show first image immediately
+        setInterval(changeBg, 7000);   // Change every 7 seconds
     </script>
 </body>
 </html>
