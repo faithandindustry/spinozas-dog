@@ -6,22 +6,23 @@
     <title>Recordings — Spinozas Dog</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap">
-    
+   
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap');
         body {
             font-family: 'Geist', system-ui, sans-serif;
             font-weight: 400;
         }
-     
+    
         .hero-bg {
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             min-height: 100vh;
             transition: background-image 2s ease-in-out;
+            background-color: #111;        /* Prevents black flash between images */
         }
-     
+    
         .title {
             font-size: 3.2rem;
             letter-spacing: -0.04em;
@@ -91,7 +92,7 @@
     <div class="relative z-10 flex items-center justify-center min-h-[calc(100vh-120px)] px-6">
         <div class="max-w-xl">
             <h1 class="text-5xl tracking-tighter mb-12">Recordings</h1>
-          
+         
             <div class="space-y-12">
                 <div>
                     <p class="text-2xl mb-1">Impovisation</p>
@@ -113,14 +114,14 @@ Currently collating material towards a debut release.</p>
             </div>
         </div>
     </div>
-   
+  
     <!-- Photo Credit -->
     <div class="photo-credit">
         Photography by Mich J Tickle
     </div>
 
     <script>
-        // Background Slideshow
+        // Background Slideshow - Improved (Preload to reduce black flash)
         const images = [
             "assets/sd-offbeat-5.jpg",
             "assets/spinozas-dog-test-10.jpg",
@@ -132,16 +133,27 @@ Currently collating material towards a debut release.</p>
             "assets/spinozas-dog-test-9.jpg",
             "assets/spinozas-dog-test-1.jpg"
         ];
+
         let current = 0;
         const slideshow = document.getElementById('slideshow');
-       
+
+        // Preload images to reduce flashing
+        function preloadImages() {
+            images.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        }
+
         function changeBg() {
             slideshow.style.backgroundImage = `url('${images[current]}')`;
             current = (current + 1) % images.length;
         }
-        setInterval(changeBg, 7000);
-        changeBg();
-       
+
+        preloadImages();
+        changeBg();                    // Show first image immediately
+        setInterval(changeBg, 7000);   // Change every 7 seconds
+
         // Player
         const audio = document.getElementById('player');
         function togglePlay() {
