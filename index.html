@@ -20,7 +20,7 @@
             background-attachment: fixed;
             min-height: 100vh;
             transition: background-image 2s ease-in-out;
-            background-color: #111; /* Helps prevent black flash */
+            background-color: #111;
         }
     
         .title {
@@ -45,28 +45,13 @@
             text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
-        /* ============== MOBILE RESPONSIVENESS ============== */
         @media (max-width: 768px) {
-            .title { 
-                font-size: 2.35rem; 
-            }
-            .nav-link { 
-                font-size: 1rem; 
-            }
-            .max-w-xl {
-                max-width: 100% !important;
-            }
-            .px-6, .px-8, .md\\:px-12 {
-                padding-left: 1.25rem;
-                padding-right: 1.25rem;
-            }
-            .text-2xl {
-                font-size: 1.45rem;
-            }
-            .text-lg {
-                font-size: 1.05rem;
-                line-height: 1.65;
-            }
+            .title { font-size: 2.35rem; }
+            .nav-link { font-size: 1rem; }
+            .max-w-xl { max-width: 100% !important; }
+            .px-6 { padding-left: 1.25rem; padding-right: 1.25rem; }
+            .text-2xl { font-size: 1.45rem; }
+            .text-lg { font-size: 1.05rem; line-height: 1.65; }
         }
     </style>
 </head>
@@ -75,7 +60,7 @@
     <!-- Background Slideshow -->
     <div id="slideshow" class="hero-bg fixed inset-0 z-0"></div>
 
-    <!-- Top Bar - Mobile Friendly -->
+    <!-- Top Bar -->
     <div class="relative z-50 px-6 md:px-12 py-6 md:py-8">
         <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-6 md:gap-0">
             <a href="index.html" class="title tracking-tighter text-center md:text-left">Spinozas Dog</a>
@@ -109,26 +94,26 @@
                        yet melodic and classic at the same time.</p>
                     <br>
                     <p>On Bass Mark Axiak: a prolific player who’s traversed stages and studios from Australia,
-                       New York, Berlin & Oslo. Taking the four string plank into synthesis realms, with pitched effecs, reverse loops and filters.</p>
+                       New York, Berlin & Oslo. Taking the four string plank into synthesis realms, with pitched fx, reverse loops and filters.</p>
                     <br>
                     <p>Drums: Kristian Craig aka producer Capitol K. Once described as ‘the punk warlord of groove’
-                       for his electronic programming. Here he takes inspiration from trad rhythm, jazz n blues shuffles,
+                       for his electronic programming. Here he takes inspiration from trad rythum, jazz n blues shuffles,
                        using open tone and light touch.</p>
                 </div>
             </div>
 
-            <!-- Audio Player -->
+            <!-- Audio Player with Autoplay -->
             <div class="mt-16 flex justify-center">
                 <div class="flex items-center gap-5 bg-black/70 border border-white/20 rounded-2xl px-7 py-4">
-                    <button id="playBtn" class="w-12 h-12 flex items-center justify-center text-3xl hover:scale-110 transition">▶</button>
+                    <button id="playBtn" class="w-12 h-12 flex items-center justify-center text-3xl hover:scale-110 transition">❚❚</button>
                     <div class="text-left">
                         <p class="text-sm">Spinozas Dog - Shuffle</p>
                         <p class="text-xs text-white/50">2025</p>
                     </div>
-                    <audio id="player" loop>
+                    <audio id="player" loop autoplay muted>
                         <source src="assets/track.mp3" type="audio/mpeg">
                     </audio>
-                    <button id="muteBtn" class="text-sm text-white/60 hover:text-white">mute</button>
+                    <button id="muteBtn" class="text-sm text-white/60 hover:text-white">unmute</button>
                 </div>
             </div>
         </div>
@@ -140,7 +125,7 @@
     </div>
 
     <script>
-        // Background Slideshow - Improved (Preload to reduce black flash)
+        // Background Slideshow
         const images = [
             "assets/sd-offbeat-5.jpg",
             "assets/spinozas-dog-test-10.jpg",
@@ -156,7 +141,6 @@
         let current = 0;
         const slideshow = document.getElementById('slideshow');
 
-        // Preload images
         function preloadImages() {
             images.forEach(src => {
                 const img = new Image();
@@ -170,14 +154,17 @@
         }
 
         preloadImages();
-        changeBg();                    // Show first image
-        setInterval(changeBg, 7000);   // Change every 7 seconds
+        changeBg();
+        setInterval(changeBg, 7000);
 
-        // Audio Player
+        // Audio Player with Autoplay
         const audio = document.getElementById('player');
         const playBtn = document.getElementById('playBtn');
         const muteBtn = document.getElementById('muteBtn');
-        let isMuted = false;
+        let isMuted = true;   // Starts muted (required for autoplay)
+
+        // Autoplay starts muted
+        audio.play().catch(() => {});
 
         playBtn.addEventListener('click', () => {
             if (audio.paused) {
