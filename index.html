@@ -83,7 +83,6 @@
                 Peter Sant • Kristian Craig • Mark Axiak
             </p>
 
-            <!-- Subtle Text Backdrop -->
             <div class="bg-black/20 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-10 text-left">
                 <div class="text-lg leading-relaxed text-white/95">
                     <p>Spinozas Dog are an experimental instrumental trio based on the island of Malta.
@@ -102,15 +101,15 @@
                 </div>
             </div>
 
-            <!-- Audio Player -->
+            <!-- Audio Player (Reverted to original) -->
             <div class="mt-16 flex justify-center">
                 <div class="flex items-center gap-5 bg-black/70 border border-white/20 rounded-2xl px-7 py-4">
-                    <button id="playBtn" class="w-12 h-12 flex items-center justify-center text-3xl hover:scale-110 transition">❚❚</button>
+                    <button id="playBtn" class="w-12 h-12 flex items-center justify-center text-3xl hover:scale-110 transition">▶</button>
                     <div class="text-left">
                         <p class="text-sm">Spinozas Dog - Shuffle</p>
                         <p class="text-xs text-white/50">2025</p>
                     </div>
-                    <audio id="player" loop autoplay>
+                    <audio id="player" loop>
                         <source src="assets/track.mp3" type="audio/mpeg">
                     </audio>
                     <button id="muteBtn" class="text-sm text-white/60 hover:text-white">mute</button>
@@ -157,17 +156,11 @@
         changeBg();
         setInterval(changeBg, 7000);
 
-        // Audio Player - Autoplay Unmuted
+        // Audio Player - Original State
         const audio = document.getElementById('player');
         const playBtn = document.getElementById('playBtn');
         const muteBtn = document.getElementById('muteBtn');
-
-        // Try to autoplay with sound
-        audio.play().catch(err => {
-            console.log("Autoplay prevented:", err);
-            // If blocked, show paused state
-            playBtn.textContent = '▶';
-        });
+        let isMuted = false;
 
         playBtn.addEventListener('click', () => {
             if (audio.paused) {
@@ -175,4 +168,15 @@
                 playBtn.textContent = '❚❚';
             } else {
                 audio.pause();
-                playBtn
+                playBtn.textContent = '▶';
+            }
+        });
+
+        muteBtn.addEventListener('click', () => {
+            isMuted = !isMuted;
+            audio.muted = isMuted;
+            muteBtn.textContent = isMuted ? 'unmute' : 'mute';
+        });
+    </script>
+</body>
+</html>
